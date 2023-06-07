@@ -1,0 +1,39 @@
+diff -Naur a/data/com.vixalien.muzika.appdata.xml.in b/data/com.vixalien.muzika.appdata.xml.in
+--- a/data/com.vixalien.muzika.appdata.xml.in	2023-06-08 02:30:49.871540916 +0530
++++ b/data/com.vixalien.muzika.appdata.xml.in	2023-06-08 02:33:18.654514663 +0530
+@@ -1,6 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <component type="desktop-application">
+ 	<id>@app-id@</id>
++	<icon type="stock">snap.muzika.@app-id@</icon>
+ 	<metadata_license>CC0-1.0</metadata_license>
+ 	<project_license>GPL-3.0+</project_license>
+ 	<name>Muzika</name>
+@@ -50,4 +51,4 @@
+ 	<content_rating type="oars-1.1" />
+ 	<provides>@app-id@.desktop</provides>
+ 	<translation type="gettext">@gettext-package@</translation>
+-</component>
+\ No newline at end of file
++</component>
+diff -Naur a/data/com.vixalien.muzika.desktop.in b/data/com.vixalien.muzika.desktop.in
+--- a/data/com.vixalien.muzika.desktop.in	2023-06-08 02:31:00.923091965 +0530
++++ b/data/com.vixalien.muzika.desktop.in	2023-06-08 02:33:30.736989265 +0530
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Name=Muzika
+ Exec=com.vixalien.muzika
+-Icon=com.vixalien.muzika
++Icon=snap.muzika.com.vixalien.muzika
+ Terminal=false
+ Type=Application
+ Categories=GTK;
+diff -Naur a/src/com.vixalien.muzika.in b/src/com.vixalien.muzika.in
+--- a/src/com.vixalien.muzika.in	2023-06-08 02:30:18.732825202 +0530
++++ b/src/com.vixalien.muzika.in	2023-06-08 02:34:12.048854100 +0530
+@@ -1,4 +1,4 @@
+-#!@GJS@ -m
++#!/snap/muzika/current/gnome-platform/usr/bin/gjs -m
+ 
+ import GLib from "gi://GLib";
+ import { exit } from "system";
