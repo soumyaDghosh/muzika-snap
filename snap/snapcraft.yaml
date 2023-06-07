@@ -15,6 +15,7 @@ parts:
       - --prefix=/snap/muzika/current/usr
     build-packages:
       - nodejs
+      - npm
     override-pull: |
       craftctl default
       patch -p1 < $CRAFT_PROJECT_DIR/muzika.patch
