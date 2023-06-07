@@ -1,0 +1,39 @@
+name: muzika # you probably want to 'snapcraft register <name>'
+base: core22 # the base snap is the execution environment for this snap
+adopt-info: muzika
+version: git
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+parts:
+  muzika:
+    # See 'snapcraft plugins'
+    plugin: meson
+    source: https://github.com/vixalien/muzika.git
+    #source-tag: ''
+    meson-parameters:
+      - --prefix=/snap/muzika/current/usr
+    build-packages:
+      - nodejs
+    override-pull: |
+      craftctl default
+      patch -p1 < $CRAFT_PROJECT_DIR/muzika.patch
+    override-build: |
+      npm install -g yarn
+      craftctl default
+      mkdir -p $CRAFT_PART_INSTALL/meta/gui
+      cp -r $CRAFT_PART_INSTALL/snap/muzika/current/usr/share/icons $CRAFT_PART_INSTALL/meta/gui/
+      for i in `find $CRAFT_PART_INSTALL/meta/gui/icons -name "*.svg" -o -name "*.png"`; do
+        mv $i "`dirname $i`/snap.$CRAFT_PROJECT_NAME.`basename $i`"
+      done
+    parse-info: [usr/share/appdata/com.vixalien.muzika.appdata.xml]
+    organize:
+      snap/muzika/current: .
+      
+apps:
+  muzika:
+    command: usr/bin/com.vixalien.muzika
+    common-id: com.vixalien.muzika
+    extensions: [gnome]
+    environment:
+      GJS_DISABLE_JIT: '1'
