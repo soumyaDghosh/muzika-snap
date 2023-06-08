@@ -41,6 +41,12 @@ parts:
     parse-info: [usr/share/appdata/com.vixalien.muzika.appdata.xml]
     organize:
       snap/muzika/current: .
+
+slots:
+  muzika:
+    interface: dbus
+    bus: session
+    name: com.vixalien.muzika
       
 apps:
   muzika:
