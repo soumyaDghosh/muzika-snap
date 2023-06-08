@@ -5,6 +5,18 @@ version: git
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
 
+package-repositories:
+  - type: apt
+    components: [main]
+    suites: [jammy]
+    key-id: 1655A0AB68576280
+    url: https://deb.nodesource.com/node_18.x/dists/jammy
+  - type: apt
+    components: [main]
+    suites: [jammy]
+    key-id: 1655A0AB68576280
+    url: https://dl.yarnpkg.com/debian
+
 parts:
   muzika:
     # See 'snapcraft plugins'
@@ -16,11 +28,11 @@ parts:
     build-packages:
       - nodejs
       - npm
+      - yarn
     override-pull: |
       craftctl default
       patch -p1 < $CRAFT_PROJECT_DIR/muzika.patch
     override-build: |
-      npm install -g yarn
       craftctl default
       mkdir -p $CRAFT_PART_INSTALL/meta/gui
       cp -r $CRAFT_PART_INSTALL/snap/muzika/current/usr/share/icons $CRAFT_PART_INSTALL/meta/gui/
