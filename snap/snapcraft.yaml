@@ -46,6 +46,8 @@ apps:
   muzika:
     command: usr/bin/com.vixalien.muzika
     common-id: com.vixalien.muzika
+    desktop: usr/share/applications/com.vixalien.muzika.desktop
     extensions: [gnome]
     environment:
       GJS_DISABLE_JIT: '1'
+      GI_TYPELIB_PATH: $SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:$SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET/gjs/girepository-1.0
