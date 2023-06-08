@@ -27,7 +27,6 @@ parts:
       - --prefix=/snap/muzika/current/usr
     build-packages:
       - nodejs
-      - npm
       - yarn
     override-pull: |
       craftctl default
