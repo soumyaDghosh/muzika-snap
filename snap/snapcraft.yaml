@@ -9,12 +9,12 @@ package-repositories:
   - type: apt
     components: [main]
     suites: [jammy]
-    key-id: 1655A0AB68576280
+    key-id: 9fd3b784bc1c6fc31a8a0a1c1655a0ab68576280
     url: https://deb.nodesource.com/node_18.x/dists/jammy
   - type: apt
     components: [main]
     suites: [jammy]
-    key-id: 1655A0AB68576280
+    key-id: 9fd3b784bc1c6fc31a8a0a1c1655a0ab68576280
     url: https://dl.yarnpkg.com/debian
 
 parts:
