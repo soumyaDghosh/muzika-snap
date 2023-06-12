@@ -28,6 +28,18 @@ diff -Naur a/data/com.vixalien.muzika.desktop.in b/data/com.vixalien.muzika.desk
  Terminal=false
  Type=Application
  Categories=GTK;
+diff -Naur a/src/application.ts b/src/application.ts
+--- a/src/application.ts	2023-06-12 23:33:39.041701893 +0530
++++ b/src/application.ts	2023-06-12 23:35:27.710939270 +0530
+@@ -26,7 +26,7 @@
+           this.quit();
+         },
+       },
+-    ]);
++    ], -1);
+ 
+     this.set_accels_for_action("app.quit", ["<primary>q"]);
+   }
 diff -Naur a/src/com.vixalien.muzika.in b/src/com.vixalien.muzika.in
 --- a/src/com.vixalien.muzika.in	2023-06-08 02:30:18.732825202 +0530
 +++ b/src/com.vixalien.muzika.in	2023-06-08 02:34:12.048854100 +0530
