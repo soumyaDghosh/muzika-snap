@@ -38,6 +38,7 @@ parts:
       - yarn
     build-environment:
       - PYTHONPATH: $CRAFT_STAGE/usr/lib/python3/dist-packages:$CRAFT_PART_INSTALL/usr/local/lib/python3.10/dist-packages:$PYTHONPATH
+      - GI_TYPELIB_PATH: /snap/gnome-42-2204-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:/snap/gnome-42-2204-sdk/current/usr/lib/girepository-1.0
     override-pull: |
       craftctl default
       patch -p1 < $CRAFT_PROJECT_DIR/muzika.patch
