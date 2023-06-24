@@ -58,7 +58,7 @@ slots:
     interface: dbus
     bus: session
     name: com.vixalien.muzika
-      
+
 apps:
   muzika:
     command: usr/bin/com.vixalien.muzika
@@ -68,3 +68,7 @@ apps:
     environment:
       GJS_DISABLE_JIT: '1'
       GI_TYPELIB_PATH: $SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:$SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET/gjs/girepository-1.0
+    plugs:
+      - network
+      - network-status
+      - network-bind
