@@ -1,23 +1,32 @@
-diff -Naur a/data/com.vixalien.muzika.appdata.xml.in b/data/com.vixalien.muzika.appdata.xml.in
---- a/data/com.vixalien.muzika.appdata.xml.in	2023-06-08 02:30:49.871540916 +0530
-+++ b/data/com.vixalien.muzika.appdata.xml.in	2023-06-08 02:33:18.654514663 +0530
+diff -Naur a/data/com.vixalien.muzika.appdata.xml.in.in b/data/com.vixalien.muzika.appdata.xml.in.in
+--- a/data/com.vixalien.muzika.appdata.xml.in.in	2023-06-24 05:49:41.061270532 +0530
++++ b/data/com.vixalien.muzika.appdata.xml.in.in	2023-06-24 05:49:04.915876099 +0530
 @@ -1,6 +1,7 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <component type="desktop-application">
- 	<id>@app-id@</id>
+ 	<id>@app-id@.desktop</id>
 +	<icon type="stock">snap.muzika.@app-id@</icon>
  	<metadata_license>CC0-1.0</metadata_license>
  	<project_license>GPL-3.0+</project_license>
  	<name>Muzika</name>
+@@ -9,7 +10,7 @@
+ 		<p>
+ 			Play music from millions of songs available on the internet for free.
+ 			Search for songs, albums, artists, and more. Discover new music from
+-			playlists and get a personalized &amp; curated experience. 
++			playlists and get a personalized &amp; curated experience.
+ 		</p>
+ 		<p>Current features:</p>
+ 		<ul>
 @@ -50,4 +51,4 @@
  	<content_rating type="oars-1.1" />
  	<provides>@app-id@.desktop</provides>
- 	<translation type="gettext">@gettext-package@</translation>
+ 	<translation type="gettext">@app-id@</translation>
 -</component>
 \ No newline at end of file
 +</component>
 diff -Naur a/data/com.vixalien.muzika.desktop.in b/data/com.vixalien.muzika.desktop.in
---- a/data/com.vixalien.muzika.desktop.in	2023-06-08 02:31:00.923091965 +0530
+--- a/data/com.vixalien.muzika.desktop.in	2023-06-24 05:48:20.112064324 +0530
 +++ b/data/com.vixalien.muzika.desktop.in	2023-06-08 02:33:30.736989265 +0530
 @@ -1,7 +1,7 @@
  [Desktop Entry]
