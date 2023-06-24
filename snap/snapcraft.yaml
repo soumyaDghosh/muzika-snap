@@ -18,7 +18,15 @@ package-repositories:
     url: https://dl.yarnpkg.com/debian/
 
 parts:
+  blueprint-compiler:
+    source: https://gitlab.gnome.org/jwestman/blueprint-compiler.git
+    source-tag: 'v0.8.1'
+    plugin: meson
+    meson-parameters:
+      - --prefix=/usr
+    override-prime: ''
   muzika:
+    after: [ blueprint-compiler ]
     # See 'snapcraft plugins'
     plugin: meson
     source: https://github.com/vixalien/muzika.git
@@ -28,7 +36,8 @@ parts:
     build-packages:
       - nodejs
       - yarn
-      - blueprint-compiler
+    build-environment:
+      - PYTHONPATH: $CRAFT_STAGE/usr/lib/python3/dist-packages:$CRAFT_PART_INSTALL/usr/local/lib/python3.10/dist-packages:$PYTHONPATH
     override-pull: |
       craftctl default
       patch -p1 < $CRAFT_PROJECT_DIR/muzika.patch
