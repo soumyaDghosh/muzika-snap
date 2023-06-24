@@ -28,7 +28,7 @@ parts:
     build-packages:
       - nodejs
       - yarn
-      - buleprint-compiler
+      - blueprint-compiler
     override-pull: |
       craftctl default
       patch -p1 < $CRAFT_PROJECT_DIR/muzika.patch
