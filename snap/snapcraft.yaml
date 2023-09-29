@@ -41,6 +41,8 @@ parts:
     after: [ rustup ]
     source: https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs.git
     source-branch: '0.10'
+    build-packages:
+      - libssl-dev
     build-environment:
       - CARGO_NET_GIT_FETCH_WITH_CLI: 'true'
       - RUSTUP_HOME: $CRAFT_STAGE/usr/share/rust
