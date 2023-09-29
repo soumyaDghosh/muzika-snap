@@ -18,16 +18,49 @@ package-repositories:
     url: https://dl.yarnpkg.com/debian/
 
 parts:
+  rustup:
+    plugin: nil
+    build-packages: [wget]
+    build-environment:
+      - RUSTUP_HOME: $CRAFT_PART_INSTALL/usr/share/rust
+      - CARGO_HOME: $CRAFT_PART_INSTALL/usr/share/rust
+      - CARGO_BUILD_JOBS: $CRAFT_PARALLEL_BUILD_COUNT
+    override-pull: |
+      wget https://sh.rustup.rs -O $CRAFT_PART_SRC/rustup-init.sh
+      chmod +x $CRAFT_PART_SRC/rustup-init.sh
+    override-build: |
+      $CRAFT_PART_SRC/rustup-init.sh -y --no-modify-path
+      mkdir -p $CRAFT_PART_INSTALL/usr/bin
+      for i in `ls $RUSTUP_HOME/bin/`; do
+        ln -s ../share/rust/bin/$i $CRAFT_PART_INSTALL/usr/bin/$i
+      done
+    override-prime: ''
+
+  gst-plugins-rs:
+    plugin: nil
+    after: [ rustup ]
+    source: https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs.git
+    source-branch: '0.10'
+    build-environment:
+      - CARGO_NET_GIT_FETCH_WITH_CLI: 'true'
+      - RUSTUP_HOME: $CRAFT_STAGE/usr/share/rust
+      - CARGO_HOME: $CRAFT_STAGE/usr/share/rust
+      - CARGO_BUILD_JOBS: $CRAFT_PARALLEL_BUILD_COUNT
+    override-build: |
+      cargo install cargo-c --root $CRAFT_PART_INSTALL/usr
+      cargo cinstall -p gst-plugin-gtk4 --prefix=/usr
+
+
   blueprint-compiler:
     source: https://gitlab.gnome.org/jwestman/blueprint-compiler.git
-    source-tag: 'v0.8.1'
+    source-tag: 'v0.8.0'
     plugin: meson
     meson-parameters:
       - --prefix=/usr
     override-prime: ''
+
   muzika:
     after: [ blueprint-compiler ]
-    # See 'snapcraft plugins'
     plugin: meson
     source: https://github.com/vixalien/muzika.git
     #source-tag: ''
@@ -52,6 +85,7 @@ parts:
     parse-info: [usr/share/appdata/com.vixalien.muzika.appdata.xml]
     organize:
       snap/muzika/current: .
+
   gstreamer:
     after: [muzika]
     plugin: nil
@@ -77,7 +111,6 @@ apps:
     desktop: usr/share/applications/com.vixalien.muzika.desktop
     extensions: [gnome]
     environment:
-      GJS_DISABLE_JIT: '1'
       GI_TYPELIB_PATH: $SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:$SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET/gjs/girepository-1.0
     plugs:
       - network
