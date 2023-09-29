@@ -43,6 +43,7 @@ parts:
     source-branch: '0.10'
     build-packages:
       - libssl-dev
+      - zlib1g-dev
     build-environment:
       - CARGO_NET_GIT_FETCH_WITH_CLI: 'true'
       - RUSTUP_HOME: $CRAFT_STAGE/usr/share/rust
