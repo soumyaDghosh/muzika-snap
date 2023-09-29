@@ -48,6 +48,7 @@ parts:
       - RUSTUP_HOME: $CRAFT_STAGE/usr/share/rust
       - CARGO_HOME: $CRAFT_STAGE/usr/share/rust
       - CARGO_BUILD_JOBS: $CRAFT_PARALLEL_BUILD_COUNT
+      - PKG_CONFIG_PATH: /snap/gnome-42-2204-sdk/current/usr/lib/pkgconfig:/snap/gnome-42-2204-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET/pkgconfig:$PKG_CONFIG_PATH
     override-build: |
       cargo install cargo-c --root $CRAFT_PART_INSTALL/usr
       cargo cinstall -p gst-plugin-gtk4 --prefix=/usr
